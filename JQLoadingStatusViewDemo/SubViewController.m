@@ -50,7 +50,7 @@
 {
     
     //模拟请求数据延迟
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isShowEmpty) {
             self.view.stateView.backgroundColor = [UIColor whiteColor];
             //显示错误界面
