@@ -25,10 +25,10 @@ static char K_StateView;
 
 }
 
-- (void)showLoadStateWithViewStateType:(ViewStateType)viewStateType
-{
-    [self.stateView showWithViewStateType:viewStateType];
-}
+//- (void)showLoadStateWithViewStateType:(ViewStateType)viewStateType
+//{
+//    [self.stateView showWithViewStateType:viewStateType];
+//}
 
 - (void)dismessStateView
 {

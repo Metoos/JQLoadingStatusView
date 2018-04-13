@@ -62,6 +62,12 @@ typedef void(^StateReturnBlock)(ViewStateReturnType viewStateReturnType);
 /** 设置自定义导航栏标题颜色 */
 @property (strong, nonatomic) UIColor *navigationTitleColor;
 
+/** 设置自定义空数据提示图片*/
+@property (strong, nonatomic) UIImage *emptyImage;
+
+/** 设置自定义加载错误提示图片*/
+@property (strong, nonatomic) UIImage *errorImage;
+
 @property (assign, nonatomic) ViewStateType maskViewStateType;
 
 /** 设置loading状态下的动画图片images 动画持续时间duration*/

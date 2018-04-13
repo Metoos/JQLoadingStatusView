@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"详情";
+    
     if (!self.isShowEmpty) {
         
         self.view.stateView.backgroundColor = [UIColor colorWithRed:0.0f green:174.0/255.0 blue:239.0f/255.0 alpha:1.0];
@@ -28,12 +30,12 @@
     }
     
     //显示加载中
-    [self.view showLoadStateWithViewStateType:viewStateWithLoading];
+    [self.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
     //加载状态回调
     [self.view loadStateReturnBlock:^(ViewStateReturnType viewStateReturnType) {
         if (viewStateReturnType == ViewStateReturnReloadViewDataType) {//用户点击了重新加载
             //显示加载中
-            [self.view showLoadStateWithViewStateType:viewStateWithLoading];
+            [self.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
             if (!self.isShowEmpty) {
                 self.view.stateView.backgroundColor = [UIColor colorWithRed:0.0f green:174.0/255.0 blue:239.0f/255.0 alpha:1.0];
             }
@@ -54,12 +56,12 @@
         if (self.isShowEmpty) {
             self.view.stateView.backgroundColor = [UIColor whiteColor];
             //显示错误界面
-            [self.view showLoadStateWithViewStateType:viewStateWithEmpty];
+            [self.view showLoadStateWithMaskViewStateType:viewStateWithEmpty];
         }else
         {
             self.view.stateView.backgroundColor = [UIColor whiteColor];
             //显示错误界面
-            [self.view showLoadStateWithViewStateType:viewStateWithLoadError];
+            [self.view showLoadStateWithMaskViewStateType:viewStateWithLoadError];
         }
         
         //数据正常加载完成则隐藏加载状态视图

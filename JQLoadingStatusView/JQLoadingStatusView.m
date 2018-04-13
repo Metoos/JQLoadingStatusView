@@ -56,11 +56,25 @@
         NSString *pathLoadError = [imageBundle pathForResource:@"loadError@2x" ofType:@"png"];
         NSString *pathBack = [imageBundle pathForResource:@"jq_back@2x" ofType:@"png"];
         [self.backBtn setImage:[UIImage imageWithContentsOfFile:pathBack] forState:UIControlStateNormal];
-        _emptyImg.image   = [UIImage imageWithContentsOfFile:pathLoadEmpty];
-        _errorImg.image   = [UIImage imageWithContentsOfFile:pathLoadError];
+        self.emptyImage   = [UIImage imageWithContentsOfFile:pathLoadEmpty];
+        self.errorImage   = [UIImage imageWithContentsOfFile:pathLoadError];
         
     }
     return self;
+}
+
+- (void)setEmptyImage:(UIImage *)emptyImage
+{
+    _emptyImage = emptyImage;
+    
+    _emptyImg.image = _emptyImage;
+}
+
+- (void)setErrorImage:(UIImage *)errorImage
+{
+    _errorImage = errorImage;
+    
+    _errorImg.image = _errorImage;
 }
 
 - (void)setBackBtnHidden:(BOOL)backBtnHidden
