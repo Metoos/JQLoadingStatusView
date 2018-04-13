@@ -6,6 +6,11 @@
 //  Copyright © 2018年 zjq. All rights reserved.
 //
 
+
+//bolck使用 避免循环引用
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
+
 #import "SubViewController.h"
 #import "UIView+LoadState.h"
 @interface SubViewController ()
@@ -26,21 +31,27 @@
         
         //使用自定义GIF图片作为加载状态显示
         [self.view.stateView setImages:[self loadingImages] duration:2.25f];
+        //使用自定义空界面图
+//        [self.view.stateView setEmptyImage:[UIImage imageNamed:@"自定义空数据提示图"]];
+        //使用自定义错误界面图
+//        [self.view.stateView setErrorImage:[UIImage imageNamed:@"自定义错误数据提示图"]];
         
     }
     
     //显示加载中
     [self.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
+    
+    WS(weakSelf);
     //加载状态回调
     [self.view loadStateReturnBlock:^(ViewStateReturnType viewStateReturnType) {
         if (viewStateReturnType == ViewStateReturnReloadViewDataType) {//用户点击了重新加载
             //显示加载中
-            [self.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
+            [weakSelf.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
             if (!self.isShowEmpty) {
-                self.view.stateView.backgroundColor = [UIColor colorWithRed:0.0f green:174.0/255.0 blue:239.0f/255.0 alpha:1.0];
+                weakSelf.view.stateView.backgroundColor = [UIColor colorWithRed:0.0f green:174.0/255.0 blue:239.0f/255.0 alpha:1.0];
             }
             //重新请求数据
-            [self loadData];
+            [weakSelf loadData];
         }
     }];
     //模拟请求数据
