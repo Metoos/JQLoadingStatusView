@@ -40,7 +40,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self = [[[NSBundle mainBundle] loadNibNamed:@"JQLoadingStatusView" owner:nil options:nil] lastObject];
+        self = [[[NSBundle bundleForClass:[self class]] loadNibNamed:@"JQLoadingStatusView" owner:nil options:nil] lastObject];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(reloadViewData)];
         self.userInteractionEnabled = YES;
         tap.cancelsTouchesInView = NO;

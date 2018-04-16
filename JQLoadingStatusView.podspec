@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JQLoadingStatusView"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "JQLoadingStatusView."
 
   # This description is used to generate tags and improve search results.
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "JQLoadingStatusView/*.{h,m,xib}"
+  s.source_files  = "JQLoadingStatusView/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -104,7 +104,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-    s.resources = "JQLoadingStatusView/Resources/*.bundle"
+    s.resources = "JQLoadingStatusView/Resources/*.bundle","JQLoadingStatusView/*.{xib,nib}"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
