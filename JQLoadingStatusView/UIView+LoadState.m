@@ -25,6 +25,11 @@ static char K_StateView;
 
 }
 
+- (void)showMaskStateType:(ViewStateType)viewStateType
+{
+    [self.stateView showMaskStateType:viewStateType];
+}
+
 //- (void)showLoadStateWithViewStateType:(ViewStateType)viewStateType
 //{
 //    [self.stateView showWithViewStateType:viewStateType];
@@ -43,7 +48,7 @@ static char K_StateView;
 - (JQLoadingStatusView *)stateView
 {
     if (!objc_getAssociatedObject(self, &K_StateView)) {
-        objc_setAssociatedObject(self, &K_StateView, [[JQLoadingStatusView alloc]initWithFrame:CGRectZero], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &K_StateView, [JQLoadingStatusView loadingStatusView], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return objc_getAssociatedObject(self, &K_StateView);
 }

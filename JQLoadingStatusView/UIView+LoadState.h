@@ -17,8 +17,10 @@
 - (void)showLoadStateWithMaskViewStateType:(ViewStateType)viewStateType;
 
 - (void)showLoadStateWithFrame:(CGRect)frame maskViewStateType:(ViewStateType)viewStateType;
-/** 显示加载状态视图默认展示在当前显示控制器 */
-//- (void)showLoadStateWithViewStateType:(ViewStateType)viewStateType;
+
+/** //不重新addsubview到父视图 直接改变状态 */
+- (void)showMaskStateType:(ViewStateType)viewStateType;
+
 /** 让加载状态视图消失 */
 - (void)dismessStateView;
 /** 状态回调 */

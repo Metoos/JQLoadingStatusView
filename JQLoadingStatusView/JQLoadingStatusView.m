@@ -10,6 +10,8 @@
 #import "JQLoadingIndefiniteAnimatedView.h"
 @interface JQLoadingStatusView ()
 
+@property (nonatomic) CGRect nframe;
+
 @property (weak, nonatomic) IBOutlet UIView *navView;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
@@ -26,6 +28,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *errorImg;
 
+@property (weak, nonatomic) IBOutlet UILabel *tipsTitleLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tipsTitleTop;
+
 @property (assign, nonatomic) BOOL isGifLoading;
 
 @property (strong, nonatomic) StateReturnBlock stateReturnBlock;
@@ -34,13 +40,17 @@
 
 @implementation JQLoadingStatusView
 
-
++ (instancetype)loadingStatusView
+{
+    return [[self alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,  [UIScreen mainScreen].bounds.size.height)];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self = [[[NSBundle bundleForClass:[self class]] loadNibNamed:@"JQLoadingStatusView" owner:nil options:nil] lastObject];
+        self.nframe = frame;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(reloadViewData)];
         self.userInteractionEnabled = YES;
         tap.cancelsTouchesInView = NO;
@@ -48,7 +58,9 @@
         self.backBtnHidden = YES;
         self.showNavigationBar = NO;
         self.navigationBarColor = [UIColor whiteColor];
-        
+        self.loadingColor = [UIColor blackColor];
+        self.loadingThickness = 6;
+        self.loadingRadius = 30;
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
         NSURL *url = [bundle URLForResource:@"JQLoadingStatusView" withExtension:@"bundle"];
         NSBundle *imageBundle = [NSBundle bundleWithURL:url];
@@ -107,13 +119,60 @@
     self.titleLab.textColor = _navigationTitleColor;
 }
 
-
--(void)layoutSubviews
+- (void)setTipsTitle:(NSString *)tipsTitle
 {
+    _tipsTitle = tipsTitle;
+    _tipsTitleLabel.text = _tipsTitle;
+}
+
+- (void)setTipsTitleInsetTopSpace:(CGFloat)tipsTitleInsetTopSpace
+{
+    _tipsTitleInsetTopSpace = tipsTitleInsetTopSpace;
+    _tipsTitleTop.constant  = _tipsTitleInsetTopSpace+8.0f;
+}
+
+- (void)setTipsTitleFont:(UIFont *)tipsTitleFont
+{
+    _tipsTitleFont = tipsTitleFont;
+    _tipsTitleLabel.font = _tipsTitleFont;
+}
+
+- (void)setTipsTitleColor:(UIColor *)tipsTitleColor
+{
+    _tipsTitleColor = tipsTitleColor;
+    _tipsTitleLabel.textColor = _tipsTitleColor;
+}
+
+- (void)setLoadingColor:(UIColor *)loadingColor
+{
+    _loadingColor = loadingColor;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)setLoadingThickness:(CGFloat)loadingThickness
+{
+    _loadingThickness = loadingThickness;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)setLoadingRadius:(CGFloat)loadingRadius
+{
+    _loadingRadius = loadingRadius;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    
+}
+
+
+- (void)layoutSubviews
+{
+    self.frame = self.nframe;
     if (!_isGifLoading) {
-        _loadingView.strokeColor = [UIColor blackColor];
-        _loadingView.strokeThickness = 3;
-        _loadingView.radius = 25;
+        _loadingView.strokeColor = self.loadingColor;
+        _loadingView.strokeThickness = self.loadingThickness;
+        _loadingView.radius = self.loadingRadius;
         [_loadingView sizeToFit];
     }
     
@@ -124,18 +183,20 @@
     if (_delegate && [_delegate respondsToSelector:@selector(backActionStateView)]) {
         [_delegate backActionStateView];
     }
-    
     !self.stateReturnBlock?:self.stateReturnBlock(ViewStateReturnBackActionType);
 }
 
 
 - (void)reloadViewData
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(reloadViewDataStateView)]) {
-        [_delegate reloadViewDataStateView];
+    if (self.maskViewStateType == viewStateWithEmpty ||
+        self.maskViewStateType == viewStateWithLoadError) {
+        if (_delegate && [_delegate respondsToSelector:@selector(reloadViewDataStateView)]) {
+            [_delegate reloadViewDataStateView];
+        }
+        //    [self setMaskViewStateType:viewStateWithLoading];
+        !self.stateReturnBlock?:self.stateReturnBlock(ViewStateReturnReloadViewDataType);
     }
-//    [self setMaskViewStateType:viewStateWithLoading];
-    !self.stateReturnBlock?:self.stateReturnBlock(ViewStateReturnReloadViewDataType);
 }
 
 - (void)setMaskViewStateType:(ViewStateType)maskViewStateType
@@ -221,6 +282,7 @@
      [self setValue:[[NSString alloc] initWithFormat:@"%ld",viewStateType] forKey:@"maskViewStateType"];
     
     [self setMaskViewStateType:viewStateType];
+    self.nframe = frame;
     self.frame = frame;
     [self removeFromSuperview];
     [view addSubview:self];
@@ -233,6 +295,12 @@
     [self showWithInView:viewController.view maskViewStateType:viewStateType];
 }
 
+- (void)showMaskStateType:(ViewStateType)viewStateType
+{
+    
+    [self setValue:[[NSString alloc] initWithFormat:@"%ld",viewStateType] forKey:@"maskViewStateType"];
+    [self setMaskViewStateType:viewStateType];
+}
 
 - (void)dismessStateView
 {

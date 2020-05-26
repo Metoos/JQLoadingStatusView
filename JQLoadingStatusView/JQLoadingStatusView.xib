@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,11 +21,11 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUd-ej-F0J" customClass="JQLoadingIndefiniteAnimatedView">
-                    <rect key="frame" x="135" y="259" width="50" height="50"/>
+                    <rect key="frame" x="130" y="254" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="cUd-ej-F0J" secondAttribute="height" multiplier="146:93" id="7vX-Ca-nvO"/>
-                        <constraint firstAttribute="height" constant="50" id="wfi-eW-42b"/>
-                        <constraint firstAttribute="width" constant="50" id="xmi-65-7Ph"/>
+                        <constraint firstAttribute="height" constant="60" id="wfi-eW-42b"/>
+                        <constraint firstAttribute="width" constant="60" id="xmi-65-7Ph"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -53,7 +50,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eZ-77-dmI">
-                    <rect key="frame" x="84.5" y="209" width="150" height="150"/>
+                    <rect key="frame" x="85" y="209" width="150" height="150"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadEmpty.png" translatesAutoresizingMaskIntoConstraints="NO" id="nCr-lL-bGH">
                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -72,7 +69,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaH-IC-O7b">
-                            <rect key="frame" x="97" y="32" width="125" height="20"/>
+                            <rect key="frame" x="97.5" y="32" width="125" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="125" id="0z0-ez-68J"/>
                                 <constraint firstAttribute="height" constant="20" id="S10-Nx-Ub1"/>
@@ -102,6 +99,12 @@
                         <constraint firstItem="HaH-IC-O7b" firstAttribute="centerX" secondItem="2JI-8E-L69" secondAttribute="centerX" id="viU-vD-Sr2"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDW-cy-pbR">
+                    <rect key="frame" x="30" y="367" width="260" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -112,9 +115,12 @@
                 <constraint firstItem="4eZ-77-dmI" firstAttribute="centerY" secondItem="gzR-gH-x4h" secondAttribute="centerY" id="QaC-dY-OJU"/>
                 <constraint firstItem="fpk-zN-x27" firstAttribute="centerY" secondItem="gzR-gH-x4h" secondAttribute="centerY" id="g16-CG-9fY"/>
                 <constraint firstItem="PhS-Pt-Jk3" firstAttribute="centerX" secondItem="gzR-gH-x4h" secondAttribute="centerX" id="gdw-2W-RF2"/>
+                <constraint firstAttribute="trailing" secondItem="XDW-cy-pbR" secondAttribute="trailing" constant="30" id="h09-4T-XdJ"/>
+                <constraint firstItem="XDW-cy-pbR" firstAttribute="top" secondItem="fpk-zN-x27" secondAttribute="bottom" constant="8" id="hHN-6Z-n8S"/>
                 <constraint firstItem="2JI-8E-L69" firstAttribute="top" secondItem="gzR-gH-x4h" secondAttribute="top" id="jlc-US-VdK"/>
                 <constraint firstItem="4eZ-77-dmI" firstAttribute="centerX" secondItem="gzR-gH-x4h" secondAttribute="centerX" id="l1u-UE-QP6"/>
                 <constraint firstItem="cUd-ej-F0J" firstAttribute="centerY" secondItem="gzR-gH-x4h" secondAttribute="centerY" id="s4C-YW-k5w"/>
+                <constraint firstItem="XDW-cy-pbR" firstAttribute="leading" secondItem="gzR-gH-x4h" secondAttribute="leading" constant="30" id="scX-Uy-nwE"/>
                 <constraint firstItem="fpk-zN-x27" firstAttribute="centerX" secondItem="gzR-gH-x4h" secondAttribute="centerX" id="xhS-QG-zyg"/>
             </constraints>
             <connections>
@@ -126,13 +132,15 @@
                 <outlet property="loadingGifView" destination="fpk-zN-x27" id="bLW-WW-28p"/>
                 <outlet property="loadingView" destination="cUd-ej-F0J" id="3kH-eu-Cll"/>
                 <outlet property="navView" destination="2JI-8E-L69" id="ESk-2j-k8M"/>
+                <outlet property="tipsTitleLabel" destination="XDW-cy-pbR" id="Fgd-Gz-1kk"/>
+                <outlet property="tipsTitleTop" destination="hHN-6Z-n8S" id="hru-Qw-pRQ"/>
                 <outlet property="titleLab" destination="HaH-IC-O7b" id="5oQ-cf-uee"/>
             </connections>
             <point key="canvasLocation" x="142" y="188"/>
         </view>
     </objects>
     <resources>
-        <image name="jq_back.png" width="9" height="18"/>
+        <image name="jq_back.png" width="9.5" height="18.5"/>
         <image name="loadEmpty.png" width="150" height="150"/>
         <image name="loadError.png" width="150" height="150"/>
     </resources>

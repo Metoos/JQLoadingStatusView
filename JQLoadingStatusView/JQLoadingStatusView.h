@@ -46,6 +46,8 @@ typedef void(^StateReturnBlock)(ViewStateReturnType viewStateReturnType);
 
 @interface JQLoadingStatusView : UIView
 
++ (instancetype)loadingStatusView;
+
 @property (weak, nonatomic) id<StateViewDelegate>delegate;
 
 
@@ -62,13 +64,29 @@ typedef void(^StateReturnBlock)(ViewStateReturnType viewStateReturnType);
 /** 设置自定义导航栏标题颜色 */
 @property (strong, nonatomic) UIColor *navigationTitleColor;
 
-/** 设置自定义空数据提示图片*/
+/** 设置自定义空数据提示图片 */
 @property (strong, nonatomic) UIImage *emptyImage;
 
-/** 设置自定义加载错误提示图片*/
+/** 设置自定义加载错误提示图片 */
 @property (strong, nonatomic) UIImage *errorImage;
 
+/** 提示语 */
+@property (strong, nonatomic) NSString *tipsTitle;
+/** 提示语插入头部距离 */
+@property (assign, nonatomic) CGFloat tipsTitleInsetTopSpace;
+/** 提示语字体 */
+@property (strong, nonatomic) UIFont *tipsTitleFont;
+/** 提示语字体颜色 */
+@property (strong, nonatomic) UIColor *tipsTitleColor;
+
 @property (assign, nonatomic) ViewStateType maskViewStateType;
+
+/** 默认加载动画颜色 */
+@property (strong, nonatomic) UIColor *loadingColor;
+/** 默认加载动画宽度 */
+@property (assign, nonatomic) CGFloat loadingThickness;
+/** 默认加载动画半径大小 */
+@property (assign, nonatomic) CGFloat loadingRadius;
 
 /** 设置loading状态下的动画图片images 动画持续时间duration*/
 - (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration;
@@ -78,6 +96,11 @@ typedef void(^StateReturnBlock)(ViewStateReturnType viewStateReturnType);
 - (void)showWithInView:(UIView*)view andFrame:(CGRect)frame maskViewStateType:(ViewStateType)viewStateType;
 
 - (void)showWithViewStateType:(ViewStateType)viewStateType;
+
+
+
+//不重新addsubview到父视图 直接改变状态
+- (void)showMaskStateType:(ViewStateType)viewStateType;
 
 - (void)dismessStateView;
 /** 状态回调 */

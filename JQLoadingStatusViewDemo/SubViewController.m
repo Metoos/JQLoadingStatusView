@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"详情";
+    self.navigationItem.title = @"详情";
     
     if (!self.isShowEmpty) {
         
@@ -40,13 +40,12 @@
     
     //显示加载中
     [self.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
-    
     WS(weakSelf);
     //加载状态回调
     [self.view loadStateReturnBlock:^(ViewStateReturnType viewStateReturnType) {
         if (viewStateReturnType == ViewStateReturnReloadViewDataType) {//用户点击了重新加载
             //显示加载中
-            [weakSelf.view showLoadStateWithMaskViewStateType:viewStateWithLoading];
+            [weakSelf.view showMaskStateType:viewStateWithLoading];
             if (!self.isShowEmpty) {
                 weakSelf.view.stateView.backgroundColor = [UIColor colorWithRed:0.0f green:174.0/255.0 blue:239.0f/255.0 alpha:1.0];
             }
@@ -67,17 +66,16 @@
         if (self.isShowEmpty) {
             self.view.stateView.backgroundColor = [UIColor whiteColor];
             //显示错误界面
-            [self.view showLoadStateWithMaskViewStateType:viewStateWithEmpty];
+            [self.view showMaskStateType:viewStateWithEmpty];
         }else
         {
             self.view.stateView.backgroundColor = [UIColor whiteColor];
             //显示错误界面
-            [self.view showLoadStateWithMaskViewStateType:viewStateWithLoadError];
+            [self.view showMaskStateType:viewStateWithLoadError];
         }
         
         //数据正常加载完成则隐藏加载状态视图
 //        [self.view dismessStateView];
-        
     });
 }
 
@@ -100,15 +98,5 @@
     return ary;
 
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
